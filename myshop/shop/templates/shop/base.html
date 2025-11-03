@@ -12,7 +12,17 @@
     </div>
     <div id="subheader">
         <div class="cart">
-           Your cart is empty.
+            {% with total_items=cart|length %}
+                {% if cart|length > 0 %}
+                Cart:
+                <a href="{% url "cart:cart_detail" %}">
+                    {{ total_items }} product{{ total_items|pluralize:"s" }},
+                    {{ cart.get_total_price }} PLN
+                </a>
+                {% else %}
+                    Cart is empty.
+                {% endif %}
+            {% endwith %}
         </div>
     </div>
     <div id="content">
