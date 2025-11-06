@@ -15,7 +15,7 @@ def payment_process(request):
         # Get the nonce token.
         nonce = request.POST.get('payment_method_nonce', None)
         # Create and send the transaction.
-        result = braintree.Transaction.sale({
+        result = gateway.transaction.sale({
             'amount': '{:.2f}'.format(order.get_total_cost()),
             'payment_method_nonce': nonce,
             'options': {
@@ -30,9 +30,17 @@ def payment_process(request):
             order.save()
             return redirect('payment:done')
         else:
-            return redirect('payment:cancelled')
+            return redirect('payment:canceled')
     else:
         # Token generate
-        client_token = braintree.ClientToken.generate()
+        client_token = gateway.client_token.generate()
         return render(request, 'payment/process.html', {'order': order,
                                                         'client_token': client_token})
+
+
+def payment_done(request):
+    return render(request, 'payment/done.html')
+
+
+def payment_canceled(request):
+    return render(request, 'payment/canceled.html')
