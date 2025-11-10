@@ -17,7 +17,7 @@
                 Cart:
                 <a href="{% url "cart:cart_detail" %}">
                     {{ total_items }} product{{ total_items|pluralize:"s" }},
-                    {{ cart.get_total_price }} PLN
+                    {{ cart.get_total_price_after_discount|floatformat:"2" }} PLN
                 </a>
                 {% else %}
                     The cart is empty.

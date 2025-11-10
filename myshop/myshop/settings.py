@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'coupons.apps.CouponsConfig',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,5 @@ BRAINTREE_CONF = braintree.Configuration(
     public_key=os.environ.get("BRAINTREE_PUBLIC_KEY"),
     private_key=os.environ.get("BRAINTREE_PRIVATE_KEY")
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
