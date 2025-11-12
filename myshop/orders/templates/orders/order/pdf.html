@@ -31,12 +31,24 @@
                             <td>{{ item.product }}</td>
                             <td class="num">{{ item.price }} PLN</td>
                             <td class="num">{{ item.quantity }}</td>
-                            <td class="num">{{ item.get_cost }} PLN</td>
+                            <td class="num">{{ item.get_price }} PLN</td>
                         </tr>
                     {% endfor %}
+                        {% if order.coupon %}
+                            <tr>
+                                <td>
+                                    Coupon "{{ order.coupon.code }}"
+                                    ({{ order.coupon.discount }}% discount)
+                                </td>
+                                <td colspan="2"></td>
+                                <td class="num neg">
+                                    - {{ discount_quote|floatformat:"2" }} PLN
+                                </td>
+                            </tr>
+                        {% endif %}
                     <tr class="total">
                         <td colspan="3">Total value</td>
-                        <td class="num">{{ order.get_total_cost }} PLN</td>
+                        <td class="num">{{ order.get_total_value|floatformat:"2" }} PLN</td>
                     </tr>
                 </tbody>
             </table>

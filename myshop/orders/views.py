@@ -1,5 +1,4 @@
 import weasyprint
-from decimal import Decimal
 from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -49,7 +48,9 @@ def admin_order_detail(request, order_id):
 @staff_member_required
 def admin_order_pdf(request, order_id):
     order = get_object_or_404(Order, id=order_id)
-    html = render_to_string('orders/order/pdf.html', {'order': order})
+    discount_quote = order.get_discount_value()
+    html = render_to_string('orders/order/pdf.html', {'order': order,
+                                                      'discount_quote': discount_quote})
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="order_{}.pdf"'.format(order.id)
     weasyprint.HTML(string=html).write_pdf(response, stylesheets=[weasyprint.CSS(

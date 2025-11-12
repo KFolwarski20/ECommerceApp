@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <th>Total cost</th>
-            <td>{{ order.get_total_cost|floatformat:"2" }} PLN</td>
+            <td>{{ order.get_total_value|floatformat:"2" }} PLN</td>
         </tr>
         <tr>
             <th>Status</th>
@@ -69,7 +69,7 @@
                             <td>{{ item.product }}</td>
                             <td class="num">{{ item.price }} PLN</td>
                             <td class="num">{{ item.quantity }}</td>
-                            <td class="num">{{ item.get_cost }} PLN</td>
+                            <td class="num">{{ item.get_price }} PLN</td>
                         </tr>
                     {% endfor %}
                         {% if order.coupon %}
@@ -85,8 +85,8 @@
                             </tr>
                         {% endif %}
                         <tr class="total">
-                            <td colspan="3">Total cost</td>
-                            <td class="num">{{ order.get_total_cost|floatformat:"2" }} PLN</td>
+                            <td colspan="3">Total price</td>
+                            <td class="num">{{ order.get_total_value|floatformat:"2" }} PLN</td>
                         </tr>
                 </tbody>
             </table>
