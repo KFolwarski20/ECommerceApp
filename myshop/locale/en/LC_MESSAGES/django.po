@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-17 22:20+0100\n"
+"POT-Creation-Date: 2025-11-22 23:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: cart/forms.py:8 cart/templates/cart/detail.html:16
+msgid "Ilość"
+msgstr ""
+
+#: cart/templates/cart/detail.html:6 cart/templates/cart/detail.html:10
+msgid "Twój koszyk"
+msgstr ""
+
+#: cart/templates/cart/detail.html:14
+msgid "Zdjęcie"
+msgstr ""
+
+#: cart/templates/cart/detail.html:15
+msgid "Produkt"
+msgstr ""
+
+#: cart/templates/cart/detail.html:17
+msgid "Usuń"
+msgstr ""
+
+#: cart/templates/cart/detail.html:18
+msgid "Cena jednostkowa"
+msgstr ""
+
+#: cart/templates/cart/detail.html:19
+msgid "Cena"
+msgstr ""
+
+#: cart/templates/cart/detail.html:55
+msgid "Suma częściowa"
+msgstr ""
+
+#: cart/templates/cart/detail.html:60
+#, python-format
+msgid ""
+"\n"
+"                        <td>\"%(code)s\" kupon (%(discount)s%% rabatu)</td>\n"
+"                    "
+msgstr ""
+
+#: coupons/forms.py:6
+msgid "Kupon"
+msgstr ""
+
 #: myshop/settings.py:116
 msgid "polski"
 msgstr "Polish"
@@ -24,3 +69,28 @@ msgstr "Polish"
 #: myshop/settings.py:117
 msgid "angielski"
 msgstr "English"
+
+#: shop/templates/shop/base.html:7 shop/templates/shop/base.html:12
+msgid "Mój sklep"
+msgstr ""
+
+#: shop/templates/shop/base.html:18
+msgid "Koszyk"
+msgstr ""
+
+#: shop/templates/shop/base.html:20
+#, python-format
+msgid ""
+"\n"
+"                            %(total_items)s produkt%(total_items_plural)s, "
+"%(total_price)s PLN\n"
+"                        "
+msgstr ""
+
+#: shop/templates/shop/base.html:25
+msgid "Koszyk jest pusty."
+msgstr ""
+
+#: shop/templates/shop/product/detail.html:19
+msgid "Dodaj do koszyka"
+msgstr ""

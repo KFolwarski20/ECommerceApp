@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-17 22:20+0100\n"
+"POT-Creation-Date: 2025-11-22 23:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,94 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
 "(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: cart/forms.py:8 cart/templates/cart/detail.html:16
+msgid "Ilość"
+msgstr "Quantity"
+
+#: cart/templates/cart/detail.html:6 cart/templates/cart/detail.html:10
+msgid "Twój koszyk"
+msgstr "Your shopping cart"
+
+#: cart/templates/cart/detail.html:14
+msgid "Zdjęcie"
+msgstr "Image"
+
+#: cart/templates/cart/detail.html:15
+msgid "Produkt"
+msgstr "Procuct"
+
+#: cart/templates/cart/detail.html:17
+msgid "Usuń"
+msgstr "Remove"
+
+#: cart/templates/cart/detail.html:18
+msgid "Cena jednostkowa"
+msgstr "Unit price"
+
+#: cart/templates/cart/detail.html:19
+msgid "Cena"
+msgstr "Price"
+
+#: cart/templates/cart/detail.html:55
+msgid "Suma częściowa"
+msgstr "Subtotal"
+
+#: cart/templates/cart/detail.html:60
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                        <td>\"%(code)s\" coupon (%(discount)s%% rabatu)</"
+#| "td>\n"
+#| "                    "
+msgid ""
+"\n"
+"                        <td>\"%(code)s\" kupon (%(discount)s%% rabatu)</td>\n"
+"                    "
+msgstr ""
+"\n"
+"<td>\"%(code)s\" coupon (%(discount)s%% discount)</td>"
+
+#: coupons/forms.py:6
+msgid "Kupon"
+msgstr "Coupon"
+
 #: myshop/settings.py:116
 msgid "polski"
-msgstr ""
+msgstr "polish"
 
 #: myshop/settings.py:117
 msgid "angielski"
+msgstr "english"
+
+#: shop/templates/shop/base.html:7 shop/templates/shop/base.html:12
+msgid "Mój sklep"
+msgstr "My shop"
+
+#: shop/templates/shop/base.html:18
+msgid "Koszyk"
+msgstr "Cart"
+
+#: shop/templates/shop/base.html:20
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                            %(total_items)s item%(total_items_plural)s, "
+#| "%(total_price)s PLN\n"
+#| "                        "
+msgid ""
+"\n"
+"                            %(total_items)s produkt%(total_items_plural)s, "
+"%(total_price)s PLN\n"
+"                        "
 msgstr ""
+"\n"
+"%(total_items)s item%(total_items_plural)s, %(total_price)s PLN\n"
+
+#: shop/templates/shop/base.html:25
+msgid "Koszyk jest pusty."
+msgstr "Your cart is empty."
+
+#: shop/templates/shop/product/detail.html:19
+msgid "Dodaj do koszyka"
+msgstr "Add to cart"

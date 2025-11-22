@@ -1,21 +1,22 @@
 {% extends "shop/base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-    Shopping cart
+    {% trans "Twój koszyk" %}
 {% endblock %}
 
 {% block content %}
-    <h1>Shopping cart</h1>
+    <h1>{% trans "Twój koszyk" %}</h1>
     <table class="cart">
         <thead>
             <tr>
-                <th>Photo</th>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Delete</th>
-                <th>Unit price</th>
-                <th>Price amount</th>
+                <th>{% trans "Zdjęcie" %}</th>
+                <th>{% trans "Produkt" %}</th>
+                <th>{% trans "Ilość" %}</th>
+                <th>{% trans "Usuń" %}</th>
+                <th>{% trans "Cena jednostkowa" %}</th>
+                <th>{% trans "Cena" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +35,7 @@
                                 {{ item.update_quantity_form.quantity }}
                                 {{ item.update_quantity_form.update }}
                                 {{ item.update_quantity_form.total_price }}
-                                <input type="submit" value="Change">
+                                <input type="submit" value="Update">
                                 {% csrf_token %}
                             </form>
                         </td>
@@ -51,15 +52,14 @@
             {% endfor %}
             {% if cart.coupon %}
                 <tr class="subtotal">
-                    <td>Total value</td>
+                    <td>{% trans "Suma częściowa" %}</td>
                     <td colspan="4"></td>
                     <td class="num">{{ cart.get_total_price|floatformat:"2" }} PLN</td>
                 </tr>
                 <tr>
-                    <td>
-                        Coupon "{{ cart.coupon.code }}"
-                        ({{ cart.coupon.discount }}% discount)
-                    </td>
+                    {% blocktrans with code=cart.coupon.code discount=cart.coupon.discount %}
+                        <td>"{{ code }}" kupon ({{ discount }}% rabatu)</td>
+                    {% endblocktrans %}
                     <td colspan="4"></td>
                     <td class="num neg">
                         - {{ cart.get_discount|floatformat:"2" }} PLN
