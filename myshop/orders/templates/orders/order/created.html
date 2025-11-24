@@ -1,10 +1,13 @@
 {% extends "shop/base.html" %}
+{% load i18n %}
 
 {% block title %}
-    Thank you!
+    {% trans "Dziękujemy!" %}
 {% endblock %}
 
 {% block content %}
-    <h1>Thank you!</h1>
-    <p>The order was made successfully. His number is <strong>{{ order.id }}</strong></p>
+    <h1>{% trans "Dziękujemy!" %}</h1>
+    {% blocktrans with order_id=order.id %}
+    <p>Twoje zamówienie zostało złożone. Numer zamówienia to <strong>{{ order.id }}</strong>.</p>
+    {% endblocktrans %}
 {% endblock %}

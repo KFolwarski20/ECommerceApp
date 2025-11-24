@@ -35,13 +35,13 @@
                                 {{ item.update_quantity_form.quantity }}
                                 {{ item.update_quantity_form.update }}
                                 {{ item.update_quantity_form.total_price }}
-                                <input type="submit" value="Update">
+                                <input type="submit" value="Aktualizuj">
                                 {% csrf_token %}
                             </form>
                         </td>
                         <td>
                             <form action="{% url "cart:cart_remove" product.id %}" method="post">
-                                <input type="submit" value="Remove">
+                                <input type="submit" value={% trans "Usuń" %}>
                                 {% csrf_token %}
                             </form>
                         </td>
@@ -67,7 +67,7 @@
                 </tr>
             {% endif %}
             <tr class="total">
-                <td>Total</td>
+                <td>{% trans "Suma" %}</td>
                 <td colspan="4"></td>
                 <td class="num">
                     {{ cart.get_total_price_after_discount|floatformat:"2" }} PLN
@@ -75,14 +75,14 @@
             </tr>
         </tbody>
     </table>
-    <p>Discount coupon:</p>
+    <p>{% trans "Wprowadź kupon rabatowy" %}:</p>
     <form action="{% url "coupons:apply" %}" method="post">
         {{ coupon_apply_form }}
         <input type="submit" value="Introduce">
         {% csrf_token %}
     </form>
     <p class="text-right">
-        <a href="{% url "shop:product_list" %}" class="button light">Continue shopping</a>
-        <a href="{% url 'orders:order_create' %}" class="button">Go to payment</a>
+        <a href="{% url "shop:product_list" %}" class="button light">{% trans "Kontynuuj zakupy" %}</a>
+        <a href="{% url 'orders:order_create' %}" class="button">{% trans "Do kasy" %}</a>
     </p>
 {% endblock %}

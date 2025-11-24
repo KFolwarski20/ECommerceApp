@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
     'coupons.apps.CouponsConfig',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -113,8 +114,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGES = (
-    ('pl', _('polski')),
-    ('en', _('angielski')),
+    ('pl', _('Polski')),
+    ('en', _('Angielski')),
 )
 
 LANGUAGE_CODE = 'pl'
@@ -155,5 +156,5 @@ BRAINTREE_CONF = braintree.Configuration(
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale/')
+    os.path.join(BASE_DIR, 'locale/'),
 )

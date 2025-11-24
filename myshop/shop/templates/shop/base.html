@@ -15,14 +15,14 @@
         <div class="cart">
             {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
-                    {% trans "Koszyk" %}:
+                    {% trans "Twój koszyk" %}:
                     <a href="{% url "cart:cart_detail" %}">
                         {% blocktrans with total_items_plural=total_items|pluralize:"y" total_price=cart.get_total_price %}
                             {{ total_items }} produkt{{ total_items_plural }}, {{ total_price }} PLN
                         {% endblocktrans %}
                     </a>
                 {% else %}
-                    {% trans "Koszyk jest pusty." %}
+                    {% trans "Twój koszyk jest pusty." %}
                 {% endif %}
             {% endwith %}
         </div>
