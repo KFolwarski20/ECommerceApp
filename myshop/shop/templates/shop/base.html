@@ -21,7 +21,7 @@
                         <li>
                             <a href="/{{ language.code }}/" {% if language.code == LANGUAGE_CODE %}
                                class="selected"
-                            {% endif %}>{{ language.name_local }}</a>
+                            {% endif %}>{{ language.name_translated }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -33,9 +33,13 @@
                 {% if cart|length > 0 %}
                     {% trans "Twój koszyk" %}:
                     <a href="{% url "cart:cart_detail" %}">
-                        {% blocktrans with total_items_plural=total_items|pluralize:"y" total_price=cart.get_total_price %}
-                            {{ total_items }} produkt{{ total_items_plural }}, {{ total_price }} PLN
-                        {% endblocktrans %}
+                        {% with items=total_items total=cart.get_total_price %}
+                            {% blocktrans with total=cart.get_total_price count items=total_items %}
+                                {{ items }} produkt, {{ total }} PLN
+                              {% plural %}
+                                {{ items }} produkty, {{ total }} PLN
+                              {% endblocktrans %}
+                        {% endwith %}
                     </a>
                 {% else %}
                     {% trans "Twój koszyk jest pusty." %}

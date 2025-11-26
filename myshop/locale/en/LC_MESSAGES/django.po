@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 22:25+0100\n"
-"PO-Revision-Date: 2025-11-25 21:30+0000\n"
+"POT-Creation-Date: 2025-11-26 23:45+0100\n"
+"PO-Revision-Date: 2025-11-26 22:46+0000\n"
 "Last-Translator:   <konrad.folwarski.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -24,7 +24,7 @@ msgid "Ilość"
 msgstr "Quantity"
 
 #: cart/templates/cart/detail.html:6 cart/templates/cart/detail.html:10
-#: shop/templates/shop/base.html:18
+#: shop/templates/shop/base.html:34
 msgid "Twój koszyk"
 msgstr "Your cart"
 
@@ -48,6 +48,10 @@ msgstr "Unit price"
 msgid "Cena"
 msgstr "Price"
 
+#: cart/templates/cart/detail.html:38
+msgid "Aktualizuj"
+msgstr "Update"
+
 #: cart/templates/cart/detail.html:55
 msgid "Suma częściowa"
 msgstr "Subtotal"
@@ -70,6 +74,10 @@ msgstr "Total"
 msgid "Wprowadź kupon rabatowy"
 msgstr "Apply a coupon"
 
+#: cart/templates/cart/detail.html:81
+msgid "Wprowadź"
+msgstr "Introduce"
+
 #: cart/templates/cart/detail.html:85
 msgid "Kontynuuj zakupy"
 msgstr "Continue shopping"
@@ -82,11 +90,11 @@ msgstr "Checkout"
 msgid "Kupon"
 msgstr "Coupon"
 
-#: myshop/settings.py:117
+#: myshop/settings.py:120
 msgid "Polski"
 msgstr "Polish"
 
-#: myshop/settings.py:118
+#: myshop/settings.py:121
 msgid "Angielski"
 msgstr "English"
 
@@ -107,7 +115,6 @@ msgid "payment/"
 msgstr "payment/"
 
 #: myshop/urls.py:29
-#| msgid "Kupon"
 msgid "coupons/"
 msgstr "coupons/"
 
@@ -127,17 +134,28 @@ msgstr "canceled/"
 msgid "Mój sklep"
 msgstr "My shop"
 
-#: shop/templates/shop/base.html:20
+#: shop/templates/shop/base.html:18
+msgid "Język"
+msgstr "Language"
+
+#: shop/templates/shop/base.html:37
 #, python-format
 msgid ""
 "\n"
-"                            %(total_items)s produkt%(total_items_plural)s, %(total_price)s PLN\n"
-"                        "
-msgstr ""
+"                                %(items)s produkt, %(total)s PLN\n"
+"                              "
+msgid_plural ""
 "\n"
-"%(total_items)s product%(total_items_plural)s, %(total_price)s PLN"
+"                                %(items)s produkty, %(total)s PLN\n"
+"                              "
+msgstr[0] ""
+"\n"
+"%(items)s product, %(total)s PLN"
+msgstr[1] ""
+"\n"
+"%(items)s products, %(total)s PLN"
 
-#: shop/templates/shop/base.html:25
+#: shop/templates/shop/base.html:45
 msgid "Twój koszyk jest pusty."
 msgstr "Your shopping cart is empty."
 
