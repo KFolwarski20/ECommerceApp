@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-26 23:45+0100\n"
-"PO-Revision-Date: 2025-11-26 22:46+0000\n"
+"POT-Creation-Date: 2025-11-27 19:55+0100\n"
+"PO-Revision-Date: 2025-11-27 18:55+0000\n"
 "Last-Translator:   <konrad.folwarski.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -162,6 +162,10 @@ msgstr "Your shopping cart is empty."
 #: shop/templates/shop/product/detail.html:19
 msgid "Dodaj do koszyka"
 msgstr "Add to cart"
+
+#: shop/templates/shop/product/detail.html:24
+msgid "Z tym produktem klienci kupowali również:"
+msgstr "People who bought this also bought"
 
 #: shop/templates/shop/product/list.html:6
 #: shop/templates/shop/product/list.html:24
