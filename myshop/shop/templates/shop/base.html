@@ -1,55 +1,133 @@
 {% load static %}
 {% load i18n %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% trans "Mój sklep" %}{% endblock %}</title>
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
-</head>
-<body>
-    <div id="header">
-        <a href="/" class="logo">{% trans "Mój sklep" %}</a>
+{% load tailwind_tags %}
 
-        {% get_current_language as LANGUAGE_CODE %}
-        {% get_available_languages as LANGUAGES %}
-        {% get_language_info_list for LANGUAGES as languages %}
-        <div class="languages">
-            <p>{% trans "Język" %}:</p>
-                <ul class="languages">
-                    {% for language in languages %}
-                        <li>
-                            <a href="/{{ language.code }}/" {% if language.code == LANGUAGE_CODE %}
-                               class="selected"
-                            {% endif %}>{{ language.name_translated }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-        </div>
-    </div>
-    <div id="subheader">
-        <div class="cart">
-            {% with total_items=cart|length %}
-                {% if cart|length > 0 %}
-                    {% trans "Twój koszyk" %}:
-                    <a href="{% url 'cart:cart_detail' %}">
-                        {% with items=total_items total=cart.get_total_price %}
-                            {% blocktrans with total=cart.get_total_price count items=total_items %}
-                                {{ items }} produkt, {{ total }} PLN
-                              {% plural %}
-                                {{ items }} produkty, {{ total }} PLN
-                              {% endblocktrans %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% trans "Mój sklep" %}{% endblock %}</title>
+        {% tailwind_css %}
+    </head>
+    <body class="bg-gray-100 text-gray-900 min-h-screen">
+        <header class="bg-white shadow-lg sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 py-5">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <a href="/" class="group flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600
+                                flex items-center justify-center shadow-md
+                                group-hover:scale-105 transition">
+                            <span class="text-white text-2xl font-bold">K</span>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-black tracking-tight text-gray-900">
+                                {% trans "Mój sklep" %}
+                            </h1>
+                            <p class="text-xs text-gray-500">
+                            {% trans "Najlepsze produkty online" %}
+                            </p>
+                        </div>
+                    </a>
+                <div class="flex items-center gap-5">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                    <div class="flex items-center gap-2">
+                        <span class="hidden sm:block text-sm font-medium text-gray-600">
+                            {% trans "Język" %}
+                        </span>
+                        <div class="flex bg-gray-100 rounded-xl p-1">
+                            {% for language in languages %}
+                            <a href="/{{ language.code }}/"
+                               class="px-3 py-1.5 rounded-lg text-sm font-medium transition
+                                    {% if language.code == LANGUAGE_CODE %}
+                                        bg-white shadow text-indigo-600
+                                    {% else %}
+                                        text-gray-500 hover:text-gray-900
+                                    {% endif %}
+                                    ">
+                                {{ language.code|upper }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <a href="{% url 'cart:cart_detail' %}"
+                       class="relative flex items-center gap-3
+                              bg-indigo-600 text-white
+                              px-5 py-3 rounded-xl
+                              shadow-md
+                              hover:bg-indigo-700
+                              hover:-translate-y-0.5
+                              transition">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="w-6 h-6"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m12-9l2 9m-6-9v9"/>
+                        </svg>
+                        <span class="font-semibold">
+                            {% trans "Koszyk" %}
+                        </span>
+                        {% with total_items=cart|length %}
+                            {% if total_items > 0 %}
+                                <span class="
+                                    absolute -top-2 -right-2
+                                    bg-red-500 text-white
+                                    text-xs font-bold
+                                    w-6 h-6 rounded-full
+                                    flex items-center justify-center
+                                    border-2 border-white">
+                                    {{ total_items }}
+                                </span>
+                            {% endif %}
                         {% endwith %}
                     </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-gradient-to-r from-indigo-50 to-purple-50 border-b">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            {% with total_items=cart|length %}
+                {% if total_items > 0 %}
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-700">
+                            {% trans "Twój koszyk zawiera" %}
+                            <span class="font-bold text-indigo-600">
+                                {{ total_items }}
+                            </span>
+                            {% blocktrans count counter=total_items %}produkt{% plural %}produkty{% endblocktrans %}
+                        </p>
+                        <a href="{% url 'cart:cart_detail' %}"
+                           class="text-indigo-600 font-semibold hover:underline">
+                            {% trans "Przejdź do koszyka →" %}
+                        </a>
+                    </div>
                 {% else %}
-                    {% trans "Twój koszyk jest pusty." %}
+                    <p class="text-gray-500 text-center">
+                        {% trans "Twój koszyk jest pusty." %}
+                    </p>
                 {% endif %}
             {% endwith %}
         </div>
-    </div>
-    <div id="content">
-        {% block content %}
-        {% endblock %}
-    </div>
-</body>
+    </section>
+    <main class="max-w-7xl mx-auto px-6 py-10">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+    <footer class="mt-16 bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-6 py-8 text-center">
+            <p>
+                © {% now "Y" %} {% trans "Mój sklep. Wszystkie prawa zastrzeżone." %}
+            </p>
+        </div>
+    </footer>
+    </body>
 </html>

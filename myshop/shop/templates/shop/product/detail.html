@@ -1,37 +1,73 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% load i18n %}
-
 {% block title %}
     {% if category %}{{ category.title }}{% else %}Products{% endif %}
 {% endblock %}
-
 {% block content %}
-    <div class="product-detail">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
-             alt="Product image">
-        <h1>{{ product.name }}</h1>
-        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
-        <p class="price">{{ product.price }} PLN</p>
-        <form action="{% url "cart:cart_add" product.id %}" method="post">
-            {{ cart_product_form }}
-            {% csrf_token %}
-            <input type="submit" value="{% trans "Dodaj do koszyka" %}">
-        </form>
-        {{ product.description|linebreaks }}
-        {% if recommended_products %}
-            <div class="recommendations">
-                <h3>{% trans "Z tym produktem klienci kupowali również:" %}</h3>
-                {% for p in recommended_products %}
-                    <div class="item">
-                        <a href="{{ p.get_absolute_url }}">
-                            <img src="{% if p.image %}{{ p.image.url }}{% else %}
-                                {% static "img/no_image.png" %}{% endif %}">
-                        </a>
-                    <p><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></p>
-                    </div>
-                {% endfor %}
+<div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white rounded-xl shadow-sm p-6">
+        <div class="flex justify-center items-start">
+            <img
+                src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                alt="Product image"
+                class="w-full max-w-md rounded-lg object-cover shadow"
+            >
+        </div>
+        <div class="flex flex-col gap-4">
+            <h1 class="text-3xl font-bold text-gray-900">
+                {{ product.name }}
+            </h1>
+            <h2>
+                <a href="{{ product.category.get_absolute_url }}"
+                   class="text-indigo-600 hover:text-indigo-800 font-medium">
+                    {{ product.category }}
+                </a>
+            </h2>
+            <p class="text-2xl font-semibold text-green-600">
+                {{ product.price }} PLN
+            </p>
+            <form action="{% url 'cart:cart_add' product.id %}"
+                  method="post"
+                  class="flex flex-col gap-4">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <button type="submit"
+                        class="bg-indigo-600 text-white px-6 py-3 rounded-lg
+                               hover:bg-indigo-700 transition font-medium">
+                    {% trans "Dodaj do koszyka" %}
+                </button>
+            </form>
+            <div class="text-gray-700 leading-relaxed mt-4">
+                {{ product.description|linebreaks }}
             </div>
-        {% endif %}
+        </div>
     </div>
+    {% if recommended_products %}
+    <section class="mt-12">
+        <h3 class="text-2xl font-bold mb-6 text-gray-900">
+            {% trans "Z tym produktem klienci kupowali również:" %}
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            {% for p in recommended_products %}
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition p-4">
+                <a href="{{ p.get_absolute_url }}">
+                    <img
+                        src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                        alt="{{ p.name }}"
+                        class="w-full aspect-square object-cover rounded-md"
+                    >
+                </a>
+                <p class="mt-3 text-center">
+                    <a href="{{ p.get_absolute_url }}"
+                       class="text-indigo-600 hover:text-indigo-800 font-medium">
+                        {{ p.name }}
+                    </a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
 {% endblock %}

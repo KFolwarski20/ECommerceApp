@@ -1,35 +1,74 @@
 {% extends "shop/base.html" %}
 {% load i18n %}
 {% load static %}
-
 {% block title %}
     {% if category %}{{ category.name }}{% else %}{% trans "Produkty" %}{% endif %}
 {% endblock %}
-
 {% block content %}
-    <div id="sidebar">
-        <h3>{% trans "Kategorie" %}</h3>
-        <ul>
-            <li {% if not category %}class="selected"{% endif %}>
-                <a href="{% url "shop:product_list" %}">{% trans "Wszystkie" %}</a>
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <aside class="bg-white rounded-xl shadow-sm p-5 h-fit">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+            {% trans "Kategorie" %}
+        </h3>
+        <ul class="space-y-2">
+            <li>
+                <a href="{% url 'shop:product_list' %}"
+                   class="block px-3 py-2 rounded-lg transition
+                   {% if not category %}
+                       bg-indigo-600 text-white font-semibold
+                   {% else %}
+                       text-gray-700 hover:bg-gray-100
+                   {% endif %}
+                   ">
+                    {% trans "Wszystkie" %}
+                </a>
             </li>
             {% for c in categories %}
-                <li {% if category.slug == c.slug %}class="selected"{% endif %}>
-                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-                </li>
+            <li>
+                <a href="{{ c.get_absolute_url }}"
+                   class="block px-3 py-2 rounded-lg transition
+                   {% if category.slug == c.slug %}
+                       bg-indigo-600 text-white font-semibold
+                   {% else %}
+                       text-gray-700 hover:bg-gray-100
+                   {% endif %}
+                   ">
+                    {{ c.name }}
+                </a>
+            </li>
             {% endfor %}
         </ul>
-    </div>
-    <div id="main" class="product-list">
-        <h1>{% if category %}{{ category.name }}{% else %}{% trans "Produkty" %}{% endif %}</h1>
-        {% for product in products %}
-            <div class="item">
+    </aside>
+    <section class="md:col-span-3">
+        <h1 class="text-3xl font-bold text-gray-900 mb-6">
+            {% if category %}
+                {{ category.name }}
+            {% else %}
+                {% trans "Produkty" %}
+            {% endif %}
+        </h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for product in products %}
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition p-4">
                 <a href="{{ product.get_absolute_url }}">
-                    <img src="{% if product.image %}{{ product.image.url }}{% else %}
-                        {% static "img/no_image.png" %}{% endif %}">
+                    <img
+                        src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                        alt="{{ product.name }}"
+                        class="w-full aspect-square object-cover rounded-lg"
+                    >
                 </a>
-            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br> {{ product.price }} PLN
+                <div class="mt-4">
+                    <a href="{{ product.get_absolute_url }}"
+                       class="text-lg font-semibold text-gray-900 hover:text-indigo-600 transition">
+                        {{ product.name }}
+                    </a>
+                    <p class="mt-2 text-xl font-bold text-green-600">
+                        {{ product.price }} PLN
+                    </p>
+                </div>
             </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
 {% endblock %}

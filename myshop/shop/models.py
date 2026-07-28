@@ -48,9 +48,6 @@ class Product(TranslatableModel):
 
     class Meta:
         ordering = ('-created',)
-        indexes = [
-            models.Index(fields=['available', 'created']),
-        ]
 
     def __str__(self):
         return self.name

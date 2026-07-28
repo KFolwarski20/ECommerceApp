@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'rosetta',
     'parler',
     'localflavor',
+    'tailwind',
+    'theme'
 ]
 
 MIDDLEWARE = [
@@ -174,3 +176,5 @@ LOCALE_PATHS = (
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+TAILWIND_APP_NAME = "theme"

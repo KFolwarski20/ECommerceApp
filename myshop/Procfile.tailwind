@@ -1,0 +1,2 @@
+django: DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib python manage.py runserver
+tailwind: DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib python manage.py tailwind start
